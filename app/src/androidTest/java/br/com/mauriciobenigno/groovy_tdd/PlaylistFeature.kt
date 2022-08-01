@@ -10,10 +10,11 @@ import androidx.test.rule.ActivityTestRule
 import com.schibsted.spain.barista.assertion.BaristaRecyclerViewAssertions.assertRecyclerViewItemCount
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertDisplayed
 import com.schibsted.spain.barista.internal.matcher.DrawableMatcher.Companion.withDrawable
+import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.TypeSafeMatcher
-import org.hamcrest.core.AllOf.allOf
+
 import org.junit.Rule
 
 
@@ -39,17 +40,21 @@ class PlaylistFeature {
 
     @Test
     fun displayListOfPlaylists(){
+        Thread.sleep(4000)
+
+
+
         assertRecyclerViewItemCount(R.id.playlists_list, 10)
 
-        onView(allOf(R.id.playlists_name), isDescendantOfA(nthChildOf(withId(R.id,playlist_list), 0)))
+        onView(allOf(withId(R.id.playlists_name), isDescendantOfA(nthChildOf(withId(R.id.playlists_list), 0))))
             .check(matches(withText("Hard Rock Cafe")))
             .check(matches(isDisplayed()))
 
-        onView(allOf(R.id.playlists_name), isDescendantOfA(nthChildOf(withId(R.id,playlist_list), 1)))
+        onView(allOf(withId(R.id.playlists_category), isDescendantOfA(nthChildOf(withId(R.id.playlists_list), 0))))
             .check(matches(withText("rock")))
             .check(matches(isDisplayed()))
 
-        onView(allOf(R.id.playlists_name), isDescendantOfA(nthChildOf(withId(R.id,playlist_list), 1)))
+        onView(allOf(withId(R.id.playlists_image), isDescendantOfA(nthChildOf(withId(R.id.playlists_list), 0))))
             .check(matches(withDrawable(R.mipmap.playlist)))
             .check(matches(isDisplayed()))
     }
