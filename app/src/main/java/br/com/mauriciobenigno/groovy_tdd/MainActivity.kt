@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
 
         if(savedInstanceState == null){
             supportFragmentManager.beginTransaction()
-                .add(R.id.container, PlaylistFragment.newInstace())
+                .add(R.id.container, PlaylistFragment.newInstance())
                 .commit()
         }
 

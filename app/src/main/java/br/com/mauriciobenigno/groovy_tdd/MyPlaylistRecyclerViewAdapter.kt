@@ -2,12 +2,10 @@ package br.com.mauriciobenigno.groovy_tdd
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 
-import br.com.mauriciobenigno.groovy_tdd.placeholder.PlaceholderContent.PlaceholderItem
 import br.com.mauriciobenigno.groovy_tdd.databinding.PlaylistItemBinding
 
 
@@ -37,9 +35,9 @@ class MyPlaylistRecyclerViewAdapter(
     override fun getItemCount(): Int = values.size
 
     inner class ViewHolder(binding: PlaylistItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        val playlistName: TextView = binding.playlistName
-        val playlistCategory: TextView = binding.playlistCategory
-        val playlistImage: ImageView = binding.playlistImage
+        val playlistName: TextView = binding.playlistsName
+        val playlistCategory: TextView = binding.playlistsCategory
+        val playlistImage: ImageView = binding.playlistsImage
 
     }
 

@@ -27,14 +27,14 @@ class PlaylistFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_playlist, container, false)
 
-        viewModelFactory = PlaylistViewModelFactory()
-        viewModel = ViewModelProvider(this, viewModelFactory).get(PlaylistViewModel::class.java)
+        setupViewModel()
 
         viewModel.playlists.observe(this as LifecycleOwner, { playlists ->
-            with(view as RecyclerView){
-                layoutManager = LinearLayoutManager(context)
 
-                adapter = MyPlaylistRecyclerViewAdapter(playlists)
+            if(playlists.getOrNull() != null){
+                setupList(view, playlists.getOrNull()!!)
+            } else {
+                // TODO
             }
 
         })
@@ -42,12 +42,28 @@ class PlaylistFragment : Fragment() {
         return view
     }
 
+    private fun setupList(
+        view: View?,
+        playlists: List<Playlist>
+    ) {
+        with(view as RecyclerView) {
+            layoutManager = LinearLayoutManager(context)
+
+            adapter = MyPlaylistRecyclerViewAdapter(playlists)
+        }
+    }
+
+    private fun setupViewModel() {
+        viewModelFactory = PlaylistViewModelFactory()
+        viewModel = ViewModelProvider(this, viewModelFactory).get(PlaylistViewModel::class.java)
+    }
+
     companion object {
 
         @JvmStatic
         fun newInstance() =
-            PlaylistFragment().apply {
+            PlaylistFragment()/*.apply {
 
-            }
+            }*/
     }
 }
