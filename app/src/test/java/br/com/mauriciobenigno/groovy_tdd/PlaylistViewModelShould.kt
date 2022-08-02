@@ -22,7 +22,7 @@ class PlaylistViewModelShould {
     val repository: PlaylistRepository = mock()
 
     init {
-        viewModel = PlaylistViewModel()
+        viewModel = PlaylistViewModel(repository)
 
     }
 
