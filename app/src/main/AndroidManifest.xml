@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
+        android:name=".GroovyApplication"
         android:theme="@style/Theme.Groovy_TDD">
         <activity
             android:name=".MainActivity"
