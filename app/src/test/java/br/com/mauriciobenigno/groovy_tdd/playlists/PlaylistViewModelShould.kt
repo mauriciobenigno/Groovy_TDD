@@ -40,7 +40,7 @@ class PlaylistViewModelShould : BaseUnitTest() {
         val viewModel = mockSucessfulCase()
 
         // Adicionado um Get para o valor, uma vez que o 'getValueForTest' retorna também o valor, acima de sucess
-        assertEquals(expected.getOrNull(), viewModel.playlists.getValueForTest())
+        assertEquals(expected, viewModel.playlists.getValueForTest())
     }
 
     @Test
