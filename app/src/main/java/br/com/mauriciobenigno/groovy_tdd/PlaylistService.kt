@@ -1,11 +1,17 @@
 package br.com.mauriciobenigno.groovy_tdd
 
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
-class PlaylistService {
+class PlaylistService(
+    private val api: PlaylistAPI
+) {
 
-    fun fetchPlaylists() : Flow<Result<List<Playlist>>> {
-        TODO("Não implementado")
+    suspend fun fetchPlaylists() : Flow<Result<List<Playlist>>> {
+        api.fetchAllPlaylists()
+        return flow {
+            emit(Result.success(api.fetchAllPlaylists()))
+        }
     }
 
 }
