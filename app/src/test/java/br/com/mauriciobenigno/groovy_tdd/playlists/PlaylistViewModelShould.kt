@@ -4,6 +4,7 @@ import br.com.mauriciobenigno.groovy_tdd.Playlist
 import br.com.mauriciobenigno.groovy_tdd.PlaylistRepository
 import br.com.mauriciobenigno.groovy_tdd.PlaylistViewModel
 import br.com.mauriciobenigno.groovy_tdd.utils.BaseUnitTest
+import br.com.mauriciobenigno.groovy_tdd.utils.captureValues
 import br.com.mauriciobenigno.groovy_tdd.utils.getValueForTest
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.times
@@ -58,6 +59,36 @@ class PlaylistViewModelShould : BaseUnitTest() {
         assertEquals(exception, viewModel.playlists.getValueForTest()!!.exceptionOrNull())
     }
 
+    @Test
+    fun showSpinnerWhileLoading() = runBlockingTest {
+        val viewModel = mockSucessfulCase()
+
+        viewModel.loader.captureValues {
+            viewModel.playlists.getValueForTest()
+            assertEquals(true, values[0])
+        }
+    }
+
+    @Test
+    fun closeLoaderAfterPlaylistsLoaded(){
+        val viewModel = mockSucessfulCase()
+
+        viewModel.loader.captureValues {
+            viewModel.playlists.getValueForTest()
+            assertEquals(false, values.last())
+        }
+    }
+
+    @Test
+    fun closeLoaderAfterError(){
+        val viewModel = mockErrorCase()
+
+        viewModel.loader.captureValues {
+            viewModel.playlists.getValueForTest()
+            assertEquals(false, values.last())
+        }
+    }
+
     private fun mockSucessfulCase(): PlaylistViewModel {
         runBlocking {
             whenever(repository.getPlaylists()).thenReturn(
@@ -67,8 +98,18 @@ class PlaylistViewModelShould : BaseUnitTest() {
             )
         }
 
-        val viewModel = PlaylistViewModel(repository)
-        return viewModel
+        return PlaylistViewModel(repository)
     }
 
+    private fun mockErrorCase(): PlaylistViewModel {
+        runBlocking {
+            whenever(repository.getPlaylists()).thenReturn(
+                flow {
+                    emit(Result.failure<List<Playlist>>(exception))
+                }
+            )
+        }
+
+        return PlaylistViewModel(repository)
+    }
 }

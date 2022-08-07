@@ -1,27 +1,21 @@
 package br.com.mauriciobenigno.groovy_tdd
 
 import androidx.lifecycle.*
+import kotlinx.coroutines.flow.onEach
 
 class PlaylistViewModel(
     private val repository: PlaylistRepository
 ) : ViewModel() {
+
+    var loader = MutableLiveData<Boolean>()
+
     val playlists = liveData<Result<List<Playlist>>> {
-        emitSource(repository.getPlaylists().asLiveData())
+        loader.postValue(true)
+        emitSource(repository.getPlaylists().onEach {
+            loader.postValue(false)
+        }.asLiveData())
     }
 
-    /*
-    @Deprecated("Alterado por chamada direta")
-    val playlists = MutableLiveData<Result<List<Playlist>>>()
 
-    init {
-        viewModelScope.launch {
-            repository.getPlaylists()
-                .collect {
-                    playlists.value = it
-                }
-        }
-    }
-
-    */
 }
 

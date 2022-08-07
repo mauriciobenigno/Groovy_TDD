@@ -9,16 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
+import br.com.mauriciobenigno.groovy_tdd.databinding.FragmentPlaylistBinding
 import dagger.hilt.android.AndroidEntryPoint
-import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class PlaylistFragment : Fragment() {
 
     lateinit var viewModel: PlaylistViewModel
+    private lateinit var _binding: FragmentPlaylistBinding
+    private val binding get() = _binding!!
 
     @Inject
     lateinit var viewModelFactory: PlaylistViewModelFactory
@@ -27,28 +27,36 @@ class PlaylistFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_playlist, container, false)
+        _binding = FragmentPlaylistBinding.inflate(inflater, container, false)
+
 
         setupViewModel()
+
+        viewModel.loader.observe(this as LifecycleOwner, { loading ->
+            when(loading){
+                true -> _binding.loader.visibility = View.VISIBLE
+                else -> _binding.loader.visibility = View.GONE
+            }
+        })
 
         viewModel.playlists.observe(this as LifecycleOwner, { playlists ->
 
             if(playlists.getOrNull() != null){
-                setupList(view, playlists.getOrNull()!!)
+                setupList(_binding, playlists.getOrNull()!!)
             } else {
                 // TODO
             }
 
         })
 
-        return view
+        return _binding.root
     }
 
     private fun setupList(
-        view: View?,
+        bindingView: FragmentPlaylistBinding,
         playlists: List<Playlist>
     ) {
-        with(view as RecyclerView) {
+        with(bindingView.playlistsList as RecyclerView) {
             layoutManager = LinearLayoutManager(context)
 
             adapter = MyPlaylistRecyclerViewAdapter(playlists)
