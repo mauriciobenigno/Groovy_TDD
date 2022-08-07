@@ -2,6 +2,7 @@ package br.com.mauriciobenigno.groovy_tdd.playlists
 
 import br.com.mauriciobenigno.groovy_tdd.Playlist
 import br.com.mauriciobenigno.groovy_tdd.PlaylistAPI
+import br.com.mauriciobenigno.groovy_tdd.PlaylistRaw
 import br.com.mauriciobenigno.groovy_tdd.PlaylistService
 import br.com.mauriciobenigno.groovy_tdd.utils.BaseUnitTest
 import com.nhaarman.mockitokotlin2.mock
@@ -18,7 +19,7 @@ class PlaylistServiceShould : BaseUnitTest() {
 
     private lateinit var service : PlaylistService
     private val api: PlaylistAPI = mock()
-    private val playlists: List<Playlist> = mock()
+    private val playlists: List<PlaylistRaw> = mock()
 
     @Test
     fun fecthPlaylistsFromAPI() = runBlockingTest {

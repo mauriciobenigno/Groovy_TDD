@@ -70,6 +70,17 @@ class PlaylistFeature {
         assertNotDisplayed(R.id.loader)
     }
 
+    @Test
+    fun displayRockImageForRockListItems(){
+        onView(allOf(withId(R.id.playlists_image), isDescendantOfA(nthChildOf(withId(R.id.playlists_list), 0))))
+            .check(matches(withDrawable(R.mipmap.rock)))
+            .check(matches(isDisplayed()))
+
+        onView(allOf(withId(R.id.playlists_image), isDescendantOfA(nthChildOf(withId(R.id.playlists_list), 3))))
+            .check(matches(withDrawable(R.mipmap.rock)))
+            .check(matches(isDisplayed()))
+    }
+
     fun nthChildOf(parentMatcher: Matcher<View>, childPosition: Int): Matcher<View> {
         return object : TypeSafeMatcher<View>() {
             override fun describeTo(description: Description) {
