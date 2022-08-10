@@ -7,7 +7,7 @@ class PlaylistViewModel(
     private val repository: PlaylistRepository
 ) : ViewModel() {
 
-    var loader = MutableLiveData<Boolean>()
+    val loader = MutableLiveData<Boolean>()
 
     val playlists = liveData<Result<List<Playlist>>> {
         loader.postValue(true)
@@ -15,7 +15,5 @@ class PlaylistViewModel(
             loader.postValue(false)
         }.asLiveData())
     }
-
-
 }
 
