@@ -6,10 +6,5 @@
     tools:context=".PlaylistDetailFragment"
     android:id="@+id/playlists_details_root">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
 </FrameLayout>
