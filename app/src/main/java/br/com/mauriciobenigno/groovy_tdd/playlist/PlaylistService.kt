@@ -1,4 +1,4 @@
-package br.com.mauriciobenigno.groovy_tdd
+package br.com.mauriciobenigno.groovy_tdd.playlist
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch

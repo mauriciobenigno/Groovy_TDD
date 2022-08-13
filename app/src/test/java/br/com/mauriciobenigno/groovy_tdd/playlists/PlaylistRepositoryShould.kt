@@ -1,6 +1,6 @@
 package br.com.mauriciobenigno.groovy_tdd.playlists
 
-import br.com.mauriciobenigno.groovy_tdd.*
+import br.com.mauriciobenigno.groovy_tdd.playlist.*
 import br.com.mauriciobenigno.groovy_tdd.utils.BaseUnitTest
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.times

@@ -1,5 +1,6 @@
-package br.com.mauriciobenigno.groovy_tdd
+package br.com.mauriciobenigno.groovy_tdd.playlist
 
+import br.com.mauriciobenigno.groovy_tdd.R
 import javax.inject.Inject
 
 class PlaylistMapper @Inject constructor(): Function1<List<PlaylistRaw>, List<Playlist>> {

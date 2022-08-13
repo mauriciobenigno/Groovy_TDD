@@ -7,20 +7,21 @@
 
     <fragment
         android:id="@+id/playlistFragment"
-        android:name="br.com.mauriciobenigno.groovy_tdd.PlaylistFragment"
+        android:name="br.com.mauriciobenigno.groovy_tdd.playlist.PlaylistFragment"
         android:label="PlaylistFragment" >
         <action
             android:id="@+id/action_playlistFragment_to_playlistDetailFragment"
-            app:destination="@id/playlistDetailFragment" />
+            app:destination="@id/playlistDetailsFragment" />
     </fragment>
+
     <fragment
-        android:id="@+id/playlistDetailFragment"
-        android:name="br.com.mauriciobenigno.groovy_tdd.PlaylistDetailFragment"
-        android:label="fragment_playlist_detail"
-        tools:layout="@layout/fragment_playlist_detail">
-            <argument
-                android:name="playlistId"
-                app:argType="string"
-                app:nullable="false" />
+        android:id="@+id/playlistDetailsFragment"
+        android:name="br.com.mauriciobenigno.groovy_tdd.details.PlaylistDetailsFragment"
+        android:label="fragment_playlist_details"
+        tools:layout="@layout/fragment_playlist_details">
+        <argument
+            android:name="playlistId"
+            app:argType="string"
+            app:nullable="false" />
     </fragment>
 </navigation>

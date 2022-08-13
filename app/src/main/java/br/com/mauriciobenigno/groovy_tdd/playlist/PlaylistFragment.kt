@@ -1,4 +1,4 @@
-package br.com.mauriciobenigno.groovy_tdd
+package br.com.mauriciobenigno.groovy_tdd.playlist
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -33,24 +33,32 @@ class PlaylistFragment : Fragment() {
 
         setupViewModel()
 
+        observeLoader()
+
+        observePlaylists()
+
+        return _binding.root
+    }
+
+    private fun observeLoader() {
         viewModel.loader.observe(this as LifecycleOwner, { loading ->
-            when(loading){
+            when (loading) {
                 true -> _binding.loader.visibility = View.VISIBLE
                 else -> _binding.loader.visibility = View.GONE
             }
         })
+    }
 
+    private fun observePlaylists() {
         viewModel.playlists.observe(this as LifecycleOwner, { playlists ->
 
-            if(playlists.getOrNull() != null){
+            if (playlists.getOrNull() != null) {
                 setupList(_binding, playlists.getOrNull()!!)
             } else {
                 // TODO
             }
 
         })
-
-        return _binding.root
     }
 
     private fun setupList(
@@ -60,11 +68,12 @@ class PlaylistFragment : Fragment() {
         with(bindingView.playlistsList as RecyclerView) {
             layoutManager = LinearLayoutManager(context)
 
-            adapter = MyPlaylistRecyclerViewAdapter(playlists, { id ->
-                val action = PlaylistFragmentDirections.actionPlaylistFragmentToPlaylistDetailFragment(id)
+            adapter = MyPlaylistRecyclerViewAdapter(playlists) { id ->
+                val action =
+                    PlaylistFragmentDirections.actionPlaylistFragmentToPlaylistDetailFragment(id)
 
                 findNavController().navigate(action)
-            })
+            }
         }
     }
 

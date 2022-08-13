@@ -1,8 +1,8 @@
 package br.com.mauriciobenigno.groovy_tdd.playlists
 
-import br.com.mauriciobenigno.groovy_tdd.Playlist
-import br.com.mauriciobenigno.groovy_tdd.PlaylistRepository
-import br.com.mauriciobenigno.groovy_tdd.PlaylistViewModel
+import br.com.mauriciobenigno.groovy_tdd.playlist.Playlist
+import br.com.mauriciobenigno.groovy_tdd.playlist.PlaylistRepository
+import br.com.mauriciobenigno.groovy_tdd.playlist.PlaylistViewModel
 import br.com.mauriciobenigno.groovy_tdd.utils.BaseUnitTest
 import br.com.mauriciobenigno.groovy_tdd.utils.captureValues
 import br.com.mauriciobenigno.groovy_tdd.utils.getValueForTest

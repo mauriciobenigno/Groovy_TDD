@@ -1,9 +1,8 @@
 package br.com.mauriciobenigno.groovy_tdd.playlists
 
-import br.com.mauriciobenigno.groovy_tdd.Playlist
-import br.com.mauriciobenigno.groovy_tdd.PlaylistAPI
-import br.com.mauriciobenigno.groovy_tdd.PlaylistRaw
-import br.com.mauriciobenigno.groovy_tdd.PlaylistService
+import br.com.mauriciobenigno.groovy_tdd.playlist.PlaylistAPI
+import br.com.mauriciobenigno.groovy_tdd.playlist.PlaylistRaw
+import br.com.mauriciobenigno.groovy_tdd.playlist.PlaylistService
 import br.com.mauriciobenigno.groovy_tdd.utils.BaseUnitTest
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.times

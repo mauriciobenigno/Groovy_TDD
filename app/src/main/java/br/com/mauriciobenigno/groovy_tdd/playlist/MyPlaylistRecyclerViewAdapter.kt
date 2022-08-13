@@ -1,4 +1,4 @@
-package br.com.mauriciobenigno.groovy_tdd
+package br.com.mauriciobenigno.groovy_tdd.playlist
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater

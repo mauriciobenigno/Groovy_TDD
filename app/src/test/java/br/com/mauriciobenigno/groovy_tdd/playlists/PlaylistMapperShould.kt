@@ -1,8 +1,7 @@
 package br.com.mauriciobenigno.groovy_tdd.playlists
 
-import br.com.mauriciobenigno.groovy_tdd.Playlist
-import br.com.mauriciobenigno.groovy_tdd.PlaylistMapper
-import br.com.mauriciobenigno.groovy_tdd.PlaylistRaw
+import br.com.mauriciobenigno.groovy_tdd.playlist.PlaylistMapper
+import br.com.mauriciobenigno.groovy_tdd.playlist.PlaylistRaw
 import br.com.mauriciobenigno.groovy_tdd.R
 import br.com.mauriciobenigno.groovy_tdd.utils.BaseUnitTest
 import junit.framework.TestCase.assertEquals
