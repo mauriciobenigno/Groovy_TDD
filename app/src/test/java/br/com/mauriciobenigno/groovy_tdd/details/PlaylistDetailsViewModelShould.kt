@@ -1,6 +1,7 @@
 package br.com.mauriciobenigno.groovy_tdd.details
 
 import br.com.mauriciobenigno.groovy_tdd.utils.BaseUnitTest
+import br.com.mauriciobenigno.groovy_tdd.utils.captureValues
 import br.com.mauriciobenigno.groovy_tdd.utils.getValueForTest
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.times
@@ -51,6 +52,28 @@ class PlaylistDetailsViewModelShould  : BaseUnitTest() {
         mockErrorCase()
 
         assertEquals(error, viewModel.playlistDetails.getValueForTest())
+    }
+
+    @Test
+    fun showLoaderWhileLoading() = runBlockingTest {
+        mockSucessfulCase()
+
+        viewModel.loader.captureValues {
+            viewModel.getPlaylistDetails(id)
+            viewModel.playlistDetails.getValueForTest()
+            assertEquals(true, values[0])
+        }
+    }
+
+    @Test
+    fun closeLoaderAfterPlaylistDetailsLoaded() = runBlockingTest {
+        mockSucessfulCase()
+        viewModel.loader.captureValues {
+            viewModel.getPlaylistDetails(id)
+
+            viewModel.playlistDetails.getValueForTest()
+            assertEquals(false, values.last())
+        }
     }
 
     private suspend fun mockErrorCase() {
