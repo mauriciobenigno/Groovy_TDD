@@ -1,16 +1,11 @@
 package br.com.mauriciobenigno.groovy_tdd.details
 
 import retrofit2.http.GET
-import javax.inject.Inject
+import retrofit2.http.Path
 
-class PlaylistDetailsAPI @Inject constructor() {
+interface PlaylistDetailsAPI  {
 
-    //@GET("playlists")
-    //suspend fun fetchPlaylistDetail(id: String) : PlaylistDetails
-
-    @GET("playlists")
-    suspend fun fetchPlaylistDetail(id: String) : PlaylistDetails {
-        TODO()
-    }
+    @GET("playlist-details/{id}")
+    suspend fun fetchPlaylistDetail(@Path("id") id: String) : PlaylistDetails
 
 }

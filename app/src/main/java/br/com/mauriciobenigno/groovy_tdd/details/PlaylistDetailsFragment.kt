@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
-import br.com.mauriciobenigno.groovy_tdd.databinding.FragmentPlaylistDetailsBinding
+import br.com.mauriciobenigno.groovy_tdd.databinding.FragmentPlaylistDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -23,26 +23,25 @@ class PlaylistDetailsFragment : Fragment() {
 
     val args: PlaylistDetailsFragmentArgs by navArgs()
 
-    private lateinit var _binding: FragmentPlaylistDetailsBinding
+    private lateinit var _binding: FragmentPlaylistDetailBinding
     private val binding get() = _binding!!
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentPlaylistDetailsBinding.inflate(inflater, container, false)
-
+        _binding = FragmentPlaylistDetailBinding.inflate(inflater, container, false)
         val id = args.playlistId
 
         viewModel = ViewModelProvider(this, viewModelFactory).get(PlaylistDetailsViewModel::class.java)
 
 
-        //viewModel.getPlaylistDetails(id)
+        viewModel.getPlaylistDetails(id)
 
         observeLiveData()
 

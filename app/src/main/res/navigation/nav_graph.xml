@@ -10,7 +10,7 @@
         android:name="br.com.mauriciobenigno.groovy_tdd.playlist.PlaylistFragment"
         android:label="PlaylistFragment" >
         <action
-            android:id="@+id/action_playlistFragment_to_playlistDetailFragment"
+            android:id="@+id/action_playlistFragment_to_playlistDetailsFragment"
             app:destination="@id/playlistDetailsFragment" />
     </fragment>
 
@@ -24,4 +24,7 @@
             app:argType="string"
             app:nullable="false" />
     </fragment>
+
+
+
 </navigation>

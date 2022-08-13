@@ -12,7 +12,7 @@ class PlaylistDetailsViewModel(
 
     val playlistDetails: MutableLiveData<Result<PlaylistDetails>> = MutableLiveData()
 
-    suspend fun getPlaylistDetails(id: String) {
+    fun getPlaylistDetails(id: String) {
         viewModelScope.launch {
             service.fetchPlaylistDetais(id)
                 .collect {
